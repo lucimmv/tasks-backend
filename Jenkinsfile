@@ -27,5 +27,14 @@ pipeline{
                 }
             }
         }
+        stage ('QualityGate'){
+            steps{
+                sleep(10)
+                timeout(1){
+                  waitForQualityGate abortPipeline: true, credentialsId: 'TOKEN_SONAR'  
+                }
+            }
+        }
+
     }
 }
